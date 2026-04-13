@@ -151,16 +151,39 @@ CALENDAR_BASE = "https://www.googleapis.com/calendar/v3"
 
 def get_auth_url():
     """Return the Google OAuth2 consent URL the user must visit."""
+    import streamlit as st
     from urllib.parse import urlencode
+
+    # Read directly from st.secrets as fallback in case config.py BOM stripping fails
+    try:
+        client_id = st.secrets["GOOGLE_OAUTH_CLIENT_ID"].strip()
+    except Exception:
+        client_id = GOOGLE_OAUTH_CLIENT_ID
+
+    try:
+        redirect_uri = st.secrets["GOOGLE_REDIRECT_URI"].strip()
+    except Exception:
+        redirect_uri = GOOGLE_REDIRECT_URI
+
+    try:
+        scopes = st.secrets["GOOGLE_SCOPES"].strip()
+    except Exception:
+        scopes = GOOGLE_SCOPES
+
+    try:
+        auth_uri = st.secrets["GOOGLE_AUTH_URI"].strip()
+    except Exception:
+        auth_uri = GOOGLE_AUTH_URI
+
     params = urlencode({
-        "client_id": GOOGLE_OAUTH_CLIENT_ID,
-        "redirect_uri": GOOGLE_REDIRECT_URI,
+        "client_id": client_id,
+        "redirect_uri": redirect_uri,
         "response_type": "code",
-        "scope": GOOGLE_SCOPES,
+        "scope": scopes,
         "access_type": "offline",
         "prompt": "consent",
     })
-    return f"{GOOGLE_AUTH_URI}?{params}"
+    return f"{auth_uri}?{params}"
 
 
 def exchange_code_for_tokens(auth_code: str) -> dict:
