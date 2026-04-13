@@ -48,12 +48,16 @@ def render_patient_google_login():
     with col2:
         # ── Google OAuth button ──────────────────────────────────────────────
         try:
+            import traceback
             from core.config import GOOGLE_OAUTH_CLIENT_ID, GOOGLE_REDIRECT_URI, GOOGLE_SCOPES
+            st.info(f"CLIENT_ID present: {bool(GOOGLE_OAUTH_CLIENT_ID)}")
+            st.info(f"REDIRECT_URI: {GOOGLE_REDIRECT_URI}")
+            st.info(f"SCOPES: {GOOGLE_SCOPES}")
             if not GOOGLE_OAUTH_CLIENT_ID:
                 st.error("❌ GOOGLE_OAUTH_CLIENT_ID is missing from secrets!")
                 return False
             auth_url = get_auth_url()
-            st.caption(f"🔗 Debug — Auth URL: `{auth_url[:120]}...`")
+            st.success(f"🔗 Auth URL generated: `{auth_url[:150]}`")
             st.markdown(f"""
             <a href="{auth_url}" target="_top" style="text-decoration:none;">
                 <div style="
@@ -75,8 +79,8 @@ def render_patient_google_login():
             </a>
             """, unsafe_allow_html=True)
         except Exception as e:
-            st.error(f"Could not generate Google sign-in URL: {e}")
-            st.info("Please contact your administrator to configure Google OAuth.")
+            st.error(f"❌ Error: {e}")
+            st.code(traceback.format_exc())
 
         st.markdown("""
         <p style="color:#6B6080; font-size:0.75rem; text-align:center; margin-top:1.5rem;">
