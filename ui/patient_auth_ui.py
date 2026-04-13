@@ -50,7 +50,7 @@ def render_patient_google_login():
         try:
             auth_url = get_auth_url()
             st.markdown(f"""
-            <a href="{auth_url}" target="_self" style="text-decoration:none;">
+            <a href="{auth_url}" target="_top" style="text-decoration:none;">
                 <div style="
                     display: flex; align-items: center; justify-content: center; gap: 0.75rem;
                     background: #fff; color: #3c4043;
