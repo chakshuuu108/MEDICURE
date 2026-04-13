@@ -151,14 +151,15 @@ CALENDAR_BASE = "https://www.googleapis.com/calendar/v3"
 
 def get_auth_url():
     """Return the Google OAuth2 consent URL the user must visit."""
-    params = (
-        f"client_id={GOOGLE_OAUTH_CLIENT_ID}"
-        f"&redirect_uri={GOOGLE_REDIRECT_URI}"
-        f"&response_type=code"
-        f"&scope={GOOGLE_SCOPES}"
-        f"&access_type=offline"
-        f"&prompt=consent"
-    )
+    from urllib.parse import urlencode
+    params = urlencode({
+        "client_id": GOOGLE_OAUTH_CLIENT_ID,
+        "redirect_uri": GOOGLE_REDIRECT_URI,
+        "response_type": "code",
+        "scope": GOOGLE_SCOPES,
+        "access_type": "offline",
+        "prompt": "consent",
+    })
     return f"{GOOGLE_AUTH_URI}?{params}"
 
 
