@@ -11,7 +11,6 @@ Google Sign-In is the ONLY login method. No guest / Patient-ID-only bypass.
 """
 
 import streamlit as st
-import streamlit.components.v1 as components
 from agents.scheduling_agent import get_auth_url
 
 
@@ -55,33 +54,38 @@ def render_patient_google_login():
 
             auth_url = get_auth_url()
 
-            # Style the Streamlit button to look like Google Sign-In
+            # st.link_button is Streamlit's native external-link button.
+            # It renders as a proper <a> tag handled by Streamlit itself,
+            # navigating the top-level window in the same tab — no iframe issues.
             st.markdown("""
             <style>
-            div[data-testid="stButton"] > button {
-                background: #fff !important;
+            [data-testid="stLinkButton"] a {
+                display: flex !important;
+                align-items: center !important;
+                justify-content: center !important;
+                gap: 0.75rem !important;
+                background: #ffffff !important;
                 color: #3c4043 !important;
                 border: 1px solid #dadce0 !important;
                 border-radius: 8px !important;
                 padding: 0.75rem 1.5rem !important;
                 font-size: 0.95rem !important;
                 font-weight: 500 !important;
-                width: 100%;
+                text-decoration: none !important;
                 box-shadow: 0 1px 3px rgba(0,0,0,0.2) !important;
+                transition: box-shadow 0.2s !important;
+                width: 100% !important;
+                box-sizing: border-box !important;
             }
-            div[data-testid="stButton"] > button:hover {
+            [data-testid="stLinkButton"] a:hover {
                 box-shadow: 0 2px 6px rgba(0,0,0,0.3) !important;
                 background: #f8f8f8 !important;
+                color: #3c4043 !important;
             }
             </style>
             """, unsafe_allow_html=True)
 
-            if st.button("🔵  Sign in with Google", use_container_width=True):
-                # Inject JS that navigates the top-level frame in the same tab
-                components.html(
-                    f"<script>window.top.location.href = '{auth_url}';</script>",
-                    height=0,
-                )
+            st.link_button("🔵  Sign in with Google", url=auth_url, use_container_width=True)
 
         except Exception as e:
             st.error(f"❌ Error setting up Google Sign-In: {e}")
