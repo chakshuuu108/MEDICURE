@@ -48,7 +48,12 @@ def render_patient_google_login():
     with col2:
         # ── Google OAuth button ──────────────────────────────────────────────
         try:
+            from core.config import GOOGLE_OAUTH_CLIENT_ID, GOOGLE_REDIRECT_URI, GOOGLE_SCOPES
+            if not GOOGLE_OAUTH_CLIENT_ID:
+                st.error("❌ GOOGLE_OAUTH_CLIENT_ID is missing from secrets!")
+                return False
             auth_url = get_auth_url()
+            st.caption(f"🔗 Debug — Auth URL: `{auth_url[:120]}...`")
             st.markdown(f"""
             <a href="{auth_url}" target="_top" style="text-decoration:none;">
                 <div style="
