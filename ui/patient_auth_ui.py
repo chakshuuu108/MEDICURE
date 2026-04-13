@@ -55,12 +55,11 @@ def render_patient_google_login():
 
             auth_url = get_auth_url()
 
-            # Use window.top.location.href to navigate the top frame,
-            # escaping any iframe context so a normal click works correctly.
+            # Navigate the top frame in the same tab using window.top.location.replace.
             st.markdown(f"""
             <div style="text-align:center;">
-                <a href="{auth_url}"
-                   onclick="window.top.location.href='{auth_url}'; return false;"
+                <a href="#"
+                   onclick="window.top.location.replace('{auth_url}'); return false;"
                    style="text-decoration:none;">
                     <div style="
                         display: flex; align-items: center; justify-content: center; gap: 0.75rem;
