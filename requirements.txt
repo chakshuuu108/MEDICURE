@@ -1,6 +1,6 @@
 # ── Web framework ─────────────────────────────────────────────────────────────
-streamlit>=1.35.0
-
+#streamlit>=1.35.0
+streamlit==1.50.0
 # ── HTTP client (Groq API, Google OAuth, Calendar API) ───────────────────────
 requests>=2.31.0
 
