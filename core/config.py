@@ -105,7 +105,7 @@ def _get(key: str, default=None):
 
 # ── Groq LLM ──────────────────────────────────────────────────────────────────
 GROQ_API_KEY = _get("GROQ_API_KEY", "")
-GROQ_MODEL   = _get("GROQ_MODEL",   "llama-3.3-70b-versatile")
+GROQ_MODEL   = _get("GROQ_MODEL",   "openai/gpt-oss-120b")
 
 # ── Email / SMTP ──────────────────────────────────────────────────────────────
 SMTP_HOST      = _get("SMTP_HOST",      "smtp.gmail.com")
