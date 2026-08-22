@@ -494,7 +494,7 @@ def render_doctor_dashboard():
                         expanded=False
                     ):
                         safe_room = slot['id'].replace("-", "").replace(" ", "")
-                        room_name = f"MediCore-{safe_room}"
+                        room_name = f"medicure-{safe_room}"
 
                         col_info, col_action = st.columns([3, 1])
                         with col_info:
