@@ -14,7 +14,7 @@ from ui.patient_auth_ui import render_patient_google_login
 from ui.reception_ui import render_reception_dashboard
 
 st.set_page_config(
-    page_title="MediCore AI",
+    page_title="MediCure AI",
     page_icon="🏥",
     layout="wide",
     initial_sidebar_state="expanded"
@@ -108,7 +108,7 @@ with st.sidebar:
     st.markdown("""
     <div style="text-align:center;padding:1rem 0 1.5rem;">
         <div style="font-size:2.5rem;margin-bottom:0.5rem;">🏥</div>
-        <div style="font-size:1.3rem;font-weight:700;color:#A78BFA;letter-spacing:0.05em;">MediCore AI</div>
+        <div style="font-size:1.3rem;font-weight:700;color:#A78BFA;letter-spacing:0.05em;">MediCure AI</div>
         <div style="font-size:0.75rem;color:#6B6080;letter-spacing:0.1em;
             text-transform:uppercase;margin-top:0.2rem;">Healthcare Intelligence</div>
     </div>
@@ -197,7 +197,7 @@ with st.sidebar:
     <div style="position:fixed;bottom:2rem;left:0;width:100%;padding:0 1rem;box-sizing:border-box;">
         <div style="font-size:0.7rem;color:#6B6080;text-align:center;line-height:1.5;">
             Powered by GROQ AI<br>
-            <span style="color:#7C3AED;">MediCore AI v2.2</span>
+            <span style="color:#7C3AED;">MediCure AI v2.2</span>
         </div>
     </div>
     """, unsafe_allow_html=True)
@@ -212,7 +212,7 @@ if mode == "home":
         <h1 style="font-size:2.8rem;font-weight:800;
             background:linear-gradient(135deg,#A78BFA,#7C3AED);
             -webkit-background-clip:text;-webkit-text-fill-color:transparent;
-            margin-bottom:0.5rem;">MediCore AI</h1>
+            margin-bottom:0.5rem;">MediCure AI</h1>
         <p style="color:#A89FC8;font-size:1.2rem;max-width:600px;margin:0 auto 3rem;">
             Intelligent Healthcare Platform powered by multi-agent AI for smarter patient care
         </p>
